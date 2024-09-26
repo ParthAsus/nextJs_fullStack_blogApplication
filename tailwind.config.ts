@@ -13,7 +13,16 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
     },
+    // container: {
+    //   center: true,
+    //   padding: '1rem',      
+    //   screens: {
+    //     '2xl': '1000px'
+    //   }
+    // },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 };
 export default config;
