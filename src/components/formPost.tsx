@@ -19,7 +19,7 @@ const FormPost = ({ submit, isEditing }: FormPostProps) => {
       return respone.data;
     },
   });
-  // console.log(dataTags);
+  
 
   return (
     <form
@@ -27,14 +27,14 @@ const FormPost = ({ submit, isEditing }: FormPostProps) => {
       className="flex flex-col items-center justify-center gap-5 mt-10"
     >
       <input
-        {...(register("title"), { required: true })}
+        {...register("title", {required: true})}
         type="text"
         placeholder="Post Title"
         className="input input-bordered w-full max-w-lg text-blue-500"
       />
 
       <textarea
-        {...(register("content"), { required: true })}
+       {...register("content", { required: true })}
         className="textarea textarea-bordered w-full max-w-lg text-white"
         placeholder="Post Content"
       ></textarea>
@@ -43,7 +43,7 @@ const FormPost = ({ submit, isEditing }: FormPostProps) => {
         <span className="loading loading-bars loading-md"></span>
       ) : (
         <select
-          {...(register("tag"), { required: true })}
+          {...register("tagId", { required: true })}
           className="select select-bordered w-full max-w-lg text-white"
           defaultValue=""
         >
