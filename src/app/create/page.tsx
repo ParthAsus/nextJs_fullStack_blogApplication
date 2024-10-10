@@ -11,7 +11,6 @@ const page = () => {
   const router = useRouter();
   const handleCreatePost: SubmitHandler<FormInputPost> = (data) => {
     mutate(data);
-    // console.log(data);
   };
 
   const {mutate, isLoading} = useMutation({

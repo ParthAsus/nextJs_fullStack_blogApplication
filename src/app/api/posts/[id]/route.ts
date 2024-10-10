@@ -9,10 +9,10 @@ interface ParamsProps {
 
 export async function DELETE(req: Request, {params}: ParamsProps){
   const url = new URL(req.url);
-  console.log(url);
+  // console.log(params);
   const id = url.pathname.split("/").pop();
 
-  console.log(id);
+  // console.log(id);
   try{
     await db.post.delete({
       where: {
