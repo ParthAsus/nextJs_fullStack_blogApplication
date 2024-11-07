@@ -18,6 +18,9 @@ export async function GET(req: Request){
           mode: 'insensitive'
         },
       },
+      include: {
+        tag: true
+      }
     });
     return NextResponse.json(posts, {status: 200});
   }
