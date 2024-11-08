@@ -4,17 +4,22 @@ import { Tag } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 interface FormPostProps {
   submit: SubmitHandler<FormInputPost>;
   isEditing: boolean;
   initialValue?: FormInputPost;
-  isLoading?: boolean
-  isLoadingSubmit?: boolean
+  isLoading?: boolean;
+  isLoadingSubmit?: boolean;
 }
 
-const FormPost = ({ submit, isEditing, initialValue, isLoading, isLoadingSubmit }: FormPostProps) => {
-  const { register, handleSubmit } = useForm<FormInputPost>({
+const FormPost = ({
+  submit,
+  isEditing,
+  initialValue,
+  isLoading,
+  isLoadingSubmit,
+}: FormPostProps) => {
+  const { register, handleSubmit, setValue } = useForm<FormInputPost>({
     defaultValues: initialValue,
   });
   const { data: dataTags, isLoading: isLoadingTags } = useQuery<Tag[]>({
@@ -24,14 +29,14 @@ const FormPost = ({ submit, isEditing, initialValue, isLoading, isLoadingSubmit 
       return respone.data;
     },
   });
-
-  if(isLoading){
+  
+  if (isLoading) {
     return (
       <div className="text-center">
         <span className="loading loading-infinity loading-lg"></span>
       </div>
-    )
-  };
+    );
+  }
   return (
     <form
       onSubmit={handleSubmit(submit)}
@@ -49,6 +54,7 @@ const FormPost = ({ submit, isEditing, initialValue, isLoading, isLoadingSubmit 
         className="textarea textarea-bordered w-full max-w-lg text-white"
         placeholder="Post Content"
       ></textarea>
+
 
       {isLoadingTags ? (
         <span className="loading loading-bars loading-md"></span>
@@ -73,7 +79,9 @@ const FormPost = ({ submit, isEditing, initialValue, isLoading, isLoadingSubmit 
         type="submit"
         className="btn bg-blue-500 text-white w-full max-w-lg"
       >
-        {isLoadingSubmit && <span className="loading loading-infinity loading-lg"></span>}
+        {isLoadingSubmit && (
+          <span className="loading loading-infinity loading-lg"></span>
+        )}
         {isEditing ? "Update" : "Create"}
       </button>
     </form>
